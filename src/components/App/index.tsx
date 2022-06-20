@@ -87,7 +87,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Box display="flex" flexDirection="column" sx={{ backgroundColor: 'whitesmoke', height: '100vh' }}>
+            <Box display="flex" flexDirection="column" sx={{ backgroundColor: 'whitesmoke', height: '100%' }}>
                 <Router>
                     <Routes>{routing}</Routes>
                 </Router>

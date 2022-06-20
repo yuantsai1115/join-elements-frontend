@@ -8,12 +8,12 @@ import { yellow } from '@mui/material/colors';
 const MainLayout: FC<any> = (): ReactElement<any> => {
     return (
         <>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '24px' }}>
                 <Typography variant="h4" component="div">
                     模型元件自動接合服務
                 </Typography>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '18px' }}>
                 <Typography variant="h6" gutterBottom component="div">
                     上傳下載，接合完成。
                 </Typography>
@@ -38,11 +38,6 @@ const MainLayout: FC<any> = (): ReactElement<any> => {
             >
                 <CheckStatus />
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="caption" color="gray" gutterBottom component="p">
-                    本服務不儲存使用者的模型，所有模型僅保留24小時即刪除。
-                </Typography>
-            </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
                 <Button
                     variant="contained"
@@ -53,6 +48,11 @@ const MainLayout: FC<any> = (): ReactElement<any> => {
                     <img src="./bmc-icon.png" height="24px" style={{ marginRight: '5px' }} />
                     贊助一杯咖啡
                 </Button>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '24px', marginBottom: '24px' }}>
+                <Typography variant="caption" color="gray" gutterBottom component="p">
+                    本服務不儲存使用者的模型，所有模型僅保留24小時即刪除。
+                </Typography>
             </Box>
         </>
     );
