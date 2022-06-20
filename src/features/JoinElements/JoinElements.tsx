@@ -114,18 +114,30 @@ const JoinElements: FC<any> = (): ReactElement => {
                                 </Typography>
                             </label>
                         </FormControl>
-                        <Box sx={{ display: 'flex', justifyContent: 'right', verticalAlign: 'center' }}>
-                            {showProgress ? (
-                                <Box sx={{ marginRight: '15px' }} component={Stack} direction="column" justifyContent="center">
-                                    <CircularProgress size={20} />
-                                </Box>
-                            ) : (
-                                <></>
-                            )}
-                            <Button disabled={isButtonDisabled} variant="contained" style={{ color: 'white' }} onClick={handleUploadClicked(1)}>
-                                上傳
-                            </Button>
+
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', verticalAlign: 'center' }}>
+                            <Box sx={{ display: 'flex', marginTop: '10px' }}>
+                                <Typography variant="caption" component="div" color="gray">
+                                    or{' '}
+                                    <a href="./sample model.rvt" style={{ color: 'gray' }}>
+                                        下載範例模型
+                                    </a>
+                                </Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', verticalAlign: 'center' }}>
+                                {showProgress ? (
+                                    <Box sx={{ marginRight: '15px' }} component={Stack} direction="column" justifyContent="center">
+                                        <CircularProgress size={20} />
+                                    </Box>
+                                ) : (
+                                    <></>
+                                )}
+                                <Button disabled={isButtonDisabled} variant="contained" style={{ color: 'white' }} onClick={handleUploadClicked(1)}>
+                                    上傳
+                                </Button>
+                            </Box>
                         </Box>
+
                         {!!workItemId ? (
                             <>
                                 <Divider sx={{ my: '20px' }} />
