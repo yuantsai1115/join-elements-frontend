@@ -46,10 +46,11 @@ const MainLayout: FC<any> = (): ReactElement<any> => {
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
                 <Button
                     variant="contained"
-                    startIcon={<LocalCafeTwoToneIcon />}
+                    // startIcon={<LocalCafeTwoToneIcon />}
                     onClick={() => window.open('https://www.buymeacoffee.com/joinelements')}
                     sx={{ backgroundColor: '#fd0', '&:hover': { backgroundColor: '#f7d501' } }}
                 >
+                    <img src="./bmc-icon.png" height="24px" style={{ marginRight: '5px' }} />
                     贊助一杯咖啡
                 </Button>
             </Box>
