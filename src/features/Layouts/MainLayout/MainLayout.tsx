@@ -1,7 +1,9 @@
 import React, { ReactElement, FC } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import JoinElements from '../../JoinElements';
 import CheckStatus from '../../CheckStatus';
+import LocalCafeTwoToneIcon from '@mui/icons-material/LocalCafeTwoTone';
+import { yellow } from '@mui/material/colors';
 
 const MainLayout: FC<any> = (): ReactElement<any> => {
     return (
@@ -40,6 +42,16 @@ const MainLayout: FC<any> = (): ReactElement<any> => {
                 <Typography variant="caption" color="gray" gutterBottom component="p">
                     本服務不儲存使用者的模型，所有模型僅保留24小時即刪除。
                 </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+                <Button
+                    variant="contained"
+                    startIcon={<LocalCafeTwoToneIcon />}
+                    onClick={() => window.open('https://www.buymeacoffee.com/joinelements')}
+                    sx={{ backgroundColor: '#fd0', '&:hover': { backgroundColor: '#f7d501' } }}
+                >
+                    贊助一杯咖啡
+                </Button>
             </Box>
         </>
     );
