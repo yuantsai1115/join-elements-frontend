@@ -122,6 +122,11 @@ const JoinElements: FC<any> = (): ReactElement => {
                                     <a href="./sample model.rvt" style={{ color: 'gray' }}>
                                         下載範例模型
                                     </a>
+                                    {' ('}
+                                    <a target="_blank" href="https://viewer.bimu.io/share/models/62b02fbbb776ea0004834168" style={{ color: 'gray' }}>
+                                        預覽
+                                    </a>
+                                    {')'}
                                 </Typography>
                             </Box>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', verticalAlign: 'center' }}>
