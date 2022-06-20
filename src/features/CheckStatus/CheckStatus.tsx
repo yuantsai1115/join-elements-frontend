@@ -20,8 +20,10 @@ import {
 import ModelService from '../../services/Model/model.service';
 import { NestCamWiredStandTwoTone } from '@mui/icons-material';
 import { WorkItemStatusEnum } from './WorkItemStatusEnum';
+import { useAnalyticsEventTracker } from '../../helpers/GaHelper';
 
 const CheckStatus: FC<any> = (): ReactElement => {
+    const gaEventTracker = useAnalyticsEventTracker('Join Elements');
     const [workItemId, setWorkItemId] = useState('');
     const [showProgress, setShowProgress] = useState<boolean>(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
@@ -78,6 +80,7 @@ const CheckStatus: FC<any> = (): ReactElement => {
 
             setWorkItemStatus(WorkItemStatusEnum.success);
             setMessage(`接合處理成功${processTime > 0 ? `，共處理 ${Math.floor(processTime / 1000).toString()} 秒` : ''}`);
+            gaEventTracker('check model', WorkItemStatusEnum.success);
             return;
         }
 
@@ -95,6 +98,7 @@ const CheckStatus: FC<any> = (): ReactElement => {
         if (data.status == WorkItemStatusEnum.cancelled) {
             setWorkItemStatus(WorkItemStatusEnum.cancelled);
             setErrorMessage('工作已取消');
+            gaEventTracker('check model', WorkItemStatusEnum.cancelled);
             return;
         }
 
@@ -107,21 +111,25 @@ const CheckStatus: FC<any> = (): ReactElement => {
         if (data.status == WorkItemStatusEnum.failedInstructions) {
             setWorkItemStatus(WorkItemStatusEnum.failedInstructions);
             setErrorMessage('伺服器開始接合模型失敗');
+            gaEventTracker('check model', WorkItemStatusEnum.failedInstructions);
             return;
         }
         if (data.status == WorkItemStatusEnum.failedLimitProcessingTime) {
             setWorkItemStatus(WorkItemStatusEnum.failedLimitProcessingTime);
             setErrorMessage('接合模型處理時間過長，超過伺服器限制');
+            gaEventTracker('check model', WorkItemStatusEnum.failedLimitProcessingTime);
             return;
         }
         if (data.status == WorkItemStatusEnum.failedUpload) {
             setWorkItemStatus(WorkItemStatusEnum.failedUpload);
             setErrorMessage('伺服器上傳接合成果失敗');
+            gaEventTracker('check model', WorkItemStatusEnum.failedUpload);
             return;
         }
         if (data.status == WorkItemStatusEnum.failedUploadOptional) {
             setWorkItemStatus(WorkItemStatusEnum.failedUploadOptional);
             setErrorMessage('伺服器未完全上傳接合成果');
+            gaEventTracker('check model', WorkItemStatusEnum.failedUploadOptional);
             return;
         }
         setErrorMessage('發生未預期錯誤，請再試一次');

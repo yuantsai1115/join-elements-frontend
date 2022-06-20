@@ -4,6 +4,7 @@ import {
     Button,
     Card,
     CardContent,
+    ClickAwayListener,
     Chip,
     CircularProgress,
     Divider,
@@ -18,16 +19,9 @@ import {
 } from '@mui/material';
 import { RevitVersionEnum } from './RevitVersionEnum';
 import ModelService from '../../services/Model/model.service';
-import ReactGA from 'react-ga';
+import { useAnalyticsEventTracker } from '../../helpers/GaHelper';
 
-const FILE_SIZE_LIMIT = 50; //MB
-
-const useAnalyticsEventTracker = (category = 'Join Elements App category') => {
-    const eventTracker = (action = 'test action', label = 'test label') => {
-        ReactGA.event({ category, action, label });
-    };
-    return eventTracker;
-};
+const FILE_SIZE_LIMIT = 99; //MB
 
 const JoinElements: FC<any> = (): ReactElement => {
     const gaEventTracker = useAnalyticsEventTracker('Join Elements');
@@ -57,7 +51,7 @@ const JoinElements: FC<any> = (): ReactElement => {
         setErrorMessage('');
     };
     const handleUploadClicked = (i: number) => async (e: React.MouseEvent<HTMLElement>) => {
-        gaEventTracker('upload model');
+        gaEventTracker('upload model', selectedRevitVersion.toString());
         // console.log(i);
         clearMessage();
         if (!!selectedFile) {
@@ -140,20 +134,28 @@ const JoinElements: FC<any> = (): ReactElement => {
                                         案件編號
                                     </Typography>
                                     <Box textAlign="center">
-                                        <Tooltip
-                                            title="複製至剪貼簿"
-                                            arrow
-                                            PopperProps={{
-                                                disablePortal: true,
-                                            }}
-                                            onClose={handleTooltipClose}
-                                            open={openCopyTooltip}
-                                            disableFocusListener
-                                            disableHoverListener
-                                            disableTouchListener
-                                        >
-                                            <Chip label={workItemId} variant="outlined" color="secondary" size="medium" onClick={handleChipClick} />
-                                        </Tooltip>
+                                        <ClickAwayListener onClickAway={handleTooltipClose}>
+                                            <Tooltip
+                                                title="複製至剪貼簿"
+                                                arrow
+                                                PopperProps={{
+                                                    disablePortal: true,
+                                                }}
+                                                onClose={handleTooltipClose}
+                                                open={openCopyTooltip}
+                                                disableFocusListener
+                                                disableHoverListener
+                                                disableTouchListener
+                                            >
+                                                <Chip
+                                                    label={workItemId}
+                                                    variant="outlined"
+                                                    color="secondary"
+                                                    size="medium"
+                                                    onClick={handleChipClick}
+                                                />
+                                            </Tooltip>
+                                        </ClickAwayListener>
                                     </Box>
                                     <Box sx={{ my: '20px' }}>
                                         <Typography variant="body2" color="gray" textAlign="center">
