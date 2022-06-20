@@ -6,13 +6,14 @@ import CheckStatus from '../../CheckStatus';
 const MainLayout: FC<any> = (): ReactElement<any> => {
     return (
         <>
+            <Typography variant="h3" gutterBottom component="div">
+                Revit模型自動接合服務
+            </Typography>
             <Box
                 sx={{
-                    flexGrow: 1,
-                    backgroundColor: 'whitesmoke',
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignItems: 'start',
                     py: '20px',
                 }}
             >
@@ -20,11 +21,9 @@ const MainLayout: FC<any> = (): ReactElement<any> => {
             </Box>
             <Box
                 sx={{
-                    flexGrow: 1,
-                    backgroundColor: 'whitesmoke',
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignItems: 'start',
                     py: '20px',
                 }}
             >

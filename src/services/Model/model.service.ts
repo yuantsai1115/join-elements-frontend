@@ -4,13 +4,14 @@ import authHeader from '../Auth/auth-header';
 const BASE_URL = 'https://join-elements-backend.herokuapp.com/';
 
 class ModelService {
-    public static async uploadModel(file: File) {
+    public static async uploadModel(file: File, rvtVersion: number) {
         try {
             console.log('[Model] start uploading model');
             // console.log(file);
             let formData = new FormData();
             formData.set('input', file);
-
+            formData.set('rvtVersion', rvtVersion.toString());
+            console.log(rvtVersion);
             const options = {
                 headers: {
                     'Content-Type': 'multipart/form-data;',
@@ -18,7 +19,7 @@ class ModelService {
             };
             let { data } = await axios.post(`${BASE_URL}work-items`, formData, options);
             console.log('[Model] upload model to backend succeed');
-
+            console.log('Abd');
             if (data.status == 201) {
                 console.log(data.message);
                 return data.data;

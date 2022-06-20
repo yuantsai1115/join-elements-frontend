@@ -10,6 +10,7 @@ import {
     FormControl,
     FormControlLabel,
     FormLabel,
+    Tooltip,
     Typography,
     Radio,
     RadioGroup,
@@ -21,9 +22,9 @@ import ModelService from '../../services/Model/model.service';
 const FILE_SIZE_LIMIT = 50; //MB
 
 const JoinElements: FC<any> = (): ReactElement => {
-    const [selectedRevitVersion, setSelectedRevitVersion] = useState(RevitVersionEnum.RVT2020);
+    const [selectedRevitVersion, setSelectedRevitVersion] = useState(RevitVersionEnum.RVT2022);
     const handleRevitVersionChange = (e: React.FormEvent<HTMLInputElement>) => {
-        console.log(e.currentTarget.value);
+        setSelectedRevitVersion(parseInt(e.currentTarget.value));
     };
 
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
@@ -57,13 +58,22 @@ const JoinElements: FC<any> = (): ReactElement => {
 
             setShowProgress(true);
             setIsButtonDisabled(true);
-            let data = await ModelService.uploadModel(selectedFile);
+            let data = await ModelService.uploadModel(selectedFile, selectedRevitVersion);
             console.log(data);
 
             setWorkItemId(data._id);
             setShowProgress(false);
             setIsButtonDisabled(false);
         }
+    };
+
+    const [openCopyTooltip, setOpenCopyTooltip] = useState<boolean>(false);
+    const handleChipClick = (e: React.MouseEvent<HTMLElement>) => {
+        if (!!workItemId) navigator.clipboard.writeText(workItemId);
+        setOpenCopyTooltip(true);
+    };
+    const handleTooltipClose = () => {
+        setOpenCopyTooltip(false);
     };
 
     return (
@@ -80,7 +90,9 @@ const JoinElements: FC<any> = (): ReactElement => {
                                 value={selectedRevitVersion}
                                 onChange={handleRevitVersionChange}
                             >
-                                <FormControlLabel value={0} control={<Radio />} label="Revit 2020" />
+                                <FormControlLabel value={RevitVersionEnum.RVT2022} control={<Radio />} label="Revit 2022" />
+                                <FormControlLabel value={RevitVersionEnum.RVT2021} control={<Radio />} label="Revit 2021" />
+                                <FormControlLabel value={RevitVersionEnum.RVT2020} control={<Radio />} label="Revit 2020" />
                             </RadioGroup>
                             <label htmlFor="contained-button-file">
                                 <input
@@ -118,7 +130,20 @@ const JoinElements: FC<any> = (): ReactElement => {
                                         案件編號
                                     </Typography>
                                     <Box textAlign="center">
-                                        <Chip label={workItemId} variant="outlined" color="secondary" size="medium" />
+                                        <Tooltip
+                                            title="複製至剪貼簿"
+                                            arrow
+                                            PopperProps={{
+                                                disablePortal: true,
+                                            }}
+                                            onClose={handleTooltipClose}
+                                            open={openCopyTooltip}
+                                            disableFocusListener
+                                            disableHoverListener
+                                            disableTouchListener
+                                        >
+                                            <Chip label={workItemId} variant="outlined" color="secondary" size="medium" onClick={handleChipClick} />
+                                        </Tooltip>
                                     </Box>
                                     <Box sx={{ my: '20px' }}>
                                         <Typography variant="body2" color="gray" textAlign="center">
