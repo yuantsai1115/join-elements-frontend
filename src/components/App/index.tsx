@@ -7,8 +7,12 @@ import Navbar from './../Navbar';
 import Footer from './../Footer';
 import ProtectedRoute, { ProtectedRouteProps } from '../ProtectedRoute';
 import AuthService from './../../services/Auth/auth.service';
+import ReactGA from 'react-ga';
+
+const TRACKING_ID = 'UA-232439197-1'; // Google Anaytic tracking id
 
 function App() {
+    ReactGA.initialize(TRACKING_ID);
     // define theme
     const theme = createTheme({
         palette: {

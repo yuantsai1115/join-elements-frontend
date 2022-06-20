@@ -18,10 +18,19 @@ import {
 } from '@mui/material';
 import { RevitVersionEnum } from './RevitVersionEnum';
 import ModelService from '../../services/Model/model.service';
+import ReactGA from 'react-ga';
 
 const FILE_SIZE_LIMIT = 50; //MB
 
+const useAnalyticsEventTracker = (category = 'Join Elements App category') => {
+    const eventTracker = (action = 'test action', label = 'test label') => {
+        ReactGA.event({ category, action, label });
+    };
+    return eventTracker;
+};
+
 const JoinElements: FC<any> = (): ReactElement => {
+    const gaEventTracker = useAnalyticsEventTracker('Join Elements');
     const [selectedRevitVersion, setSelectedRevitVersion] = useState(RevitVersionEnum.RVT2022);
     const handleRevitVersionChange = (e: React.FormEvent<HTMLInputElement>) => {
         setSelectedRevitVersion(parseInt(e.currentTarget.value));
@@ -48,6 +57,7 @@ const JoinElements: FC<any> = (): ReactElement => {
         setErrorMessage('');
     };
     const handleUploadClicked = (i: number) => async (e: React.MouseEvent<HTMLElement>) => {
+        gaEventTracker('upload model');
         // console.log(i);
         clearMessage();
         if (!!selectedFile) {
