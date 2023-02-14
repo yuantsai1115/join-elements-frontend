@@ -6,9 +6,12 @@ https://user-images.githubusercontent.com/119405090/218618634-f29b7cab-c43c-4548
 
 *Please refer to backend repository as well to run this service. https://github.com/yuantsai1115/join-elements-backend*
 
+## Backgrounds
+
 ## Features
 
-## Backgrounds
+## Live Demo
+Main branch is deployed to https://join-elements.netlify.app/.
 
 ## Project Setup
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
