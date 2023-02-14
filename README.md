@@ -1,10 +1,14 @@
 # Join elements for BIM models
 
+A web service for joining elements for Revit models. 
 
-## Backgrounds
+https://user-images.githubusercontent.com/119405090/218618634-f29b7cab-c43c-4548-a635-22f95ab80fe1.mp4
+
+*Please refer to backend repository as well to run this service. https://github.com/yuantsai1115/join-elements-backend*
 
 ## Features
 
+## Backgrounds
 
 ## Project Setup
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
