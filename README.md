@@ -1,4 +1,4 @@
-# Join elements for BIM models
+# Join elements for BIM models - Frontend
 
 A web service for joining elements for Revit models. 
 
