@@ -7,8 +7,12 @@ https://user-images.githubusercontent.com/119405090/218618634-f29b7cab-c43c-4548
 *Please refer to backend repository as well to run this service. https://github.com/yuantsai1115/join-elements-backend*
 
 ## Backgrounds
+Elements in the BIM model normally have conflicts to each other during the modelling process. These conflicts affect the applications of BIM models such as the quantity take-off, or rendering. Therefore, modeller use the join function in modelling tool to merge these elements one-by-one. It is a tedious yet necessary process in AEC industry. This service automatically join all elements in the BIM model to save a lot of time. Modeller can simply upload the model and let the server do the job, and download it back afterwards.
 
 ## Features
+- Automatically join elements in BIM model
+- Support Revit 2020-2022
+- No installation needed
 
 ## Live Demo
 Main branch is deployed to https://join-elements.netlify.app/.
